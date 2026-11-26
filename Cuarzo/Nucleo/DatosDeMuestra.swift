@@ -261,7 +261,7 @@ extension DatosDeMuestra {
     static func tarjetas() -> [Tarjeta] {
         [
             Tarjeta(id: "t-virtual", tipo: .virtual, numero: "4517382081642048", vence: "11/30", cvv: "731", titular: "CARLA BENITEZ",
-                    diseno: .virtual, bolsillo: .personal, congelada: false, comprasAfuera: false, comprasOnline: true,
+                    diseno: .vidrio, bolsillo: .personal, congelada: false, comprasAfuera: false, comprasOnline: true,
                     limiteDia: 30_000_000, usadoDia: 3_892_000, limiteMes: 150_000_000, usadoMes: 41_230_000, estadoFisica: .activa),
             Tarjeta(id: "t-fisica", tipo: .fisica, numero: "4517382055109917", vence: "11/31", cvv: "208", titular: "CARLA BENITEZ",
                     diseno: .vidrio, bolsillo: .personal, congelada: false, comprasAfuera: false, comprasOnline: true,

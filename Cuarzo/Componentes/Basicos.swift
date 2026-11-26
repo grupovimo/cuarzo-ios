@@ -612,7 +612,7 @@ struct FilaAjuste<Der: View>: View {
                 .frame(width: 36, height: 36)
                 .background(RoundedRectangle(cornerRadius: 10, style: .continuous).fill(tono == .neutro ? Color.sup2 : tono.fondo))
             VStack(alignment: .leading, spacing: 2) {
-                Text(titulo).font(.geist(15, .medio)).foregroundStyle(Color.texto)
+                Text(titulo).font(.geist(15, .medio)).foregroundStyle(Color.texto).fixedSize(horizontal: false, vertical: true)
                 if let detalle { Text(detalle).font(.geist(13)).foregroundStyle(Color.sec).lineLimit(2) }
             }
             Spacer(minLength: 8)

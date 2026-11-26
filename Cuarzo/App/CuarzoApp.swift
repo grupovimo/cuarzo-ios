@@ -162,9 +162,16 @@ enum Arranque {
         return p?.isEmpty == true ? nil : p
     }
     static var paso: Int { UserDefaults.standard.integer(forKey: "paso") }
-    static var oscuro: Bool { UserDefaults.standard.object(forKey: "oscuro") as? Bool ?? true }
-    static var cuentaNueva: Bool { UserDefaults.standard.bool(forKey: "cuentaNueva") }
-    static var sinConexion: Bool { UserDefaults.standard.bool(forKey: "sinConexion") }
+    static var oscuro: Bool { argumento("oscuro") ?? true }
+    // Se leen sólo de los argumentos: «cuentaNueva» también se guarda en UserDefaults y no tiene que arrastrarse.
+    static var cuentaNueva: Bool { argumento("cuentaNueva") ?? false }
+    static var sinConexion: Bool { argumento("sinConexion") ?? false }
+
+    private static func argumento(_ n: String) -> Bool? {
+        let a = ProcessInfo.processInfo.arguments
+        guard let i = a.firstIndex(of: "-" + n), i + 1 < a.count else { return nil }
+        return ["YES", "1", "true"].contains(a[i + 1])
+    }
 
     @MainActor
     static func abrir(en e: Estado) {

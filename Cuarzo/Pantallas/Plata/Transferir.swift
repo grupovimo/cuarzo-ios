@@ -405,7 +405,6 @@ private struct MontoTransferencia: View {
             .padding(.horizontal, 20)
         }
         .scrollIndicators(.hidden)
-        .defaultScrollAnchor(.center)
     }
 
     private func enviar() {

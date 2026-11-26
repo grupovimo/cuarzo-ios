@@ -5,7 +5,7 @@ import Observation
 /// servidor dice que no, vuelve atrás y muestra por qué.
 @Observable @MainActor
 final class Estado {
-    let datos: Datos
+    private(set) var datos: Datos
     var panel: Panel
 
     // Carga y conexión
@@ -244,6 +244,17 @@ final class Estado {
     }
 
     // MARK: - Modo de prueba (Perfil › Probar estados)
+
+    /// Vuelve a la cuenta de muestra completa o a la recién abierta (sólo con DatosDeMuestra).
+    func reiniciar(cuentaNueva: Bool) async {
+        guard datos is DatosDeMuestra else { return }
+        UserDefaults.standard.set(cuentaNueva, forKey: "cuentaNueva")
+        datos = DatosDeMuestra(cuentaNueva: cuentaNueva)
+        panel = cuentaNueva ? DatosDeMuestra.panelNuevo() : DatosDeMuestra.panelCompleto()
+        rutas = [:]
+        pestana = .inicio
+        await cargar()
+    }
 
     func simularSinConexion(_ v: Bool) async {
         if let d = datos as? DatosDeMuestra { await d.ponerSinConexion(v) }

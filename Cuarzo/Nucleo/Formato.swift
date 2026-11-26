@@ -50,7 +50,9 @@ enum Formato {
     static func cvu(_ s: String) -> String {
         guard s.count == 22 else { return s }
         let a = Array(s)
-        return [String(a[0..<7]), String(a[7..<11]), String(a[11..<15]), String(a[15..<19]), String(a[19..<22])].joined(separator: " ")
+        let cortes: [Range<Int>] = [0..<7, 7..<11, 11..<15, 15..<19, 19..<22]
+        let bloques: [String] = cortes.map { String(a[$0]) }
+        return bloques.joined(separator: " ")
     }
 
     static func iniciales(_ nombre: String) -> String {
